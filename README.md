@@ -81,14 +81,14 @@ sudo nano /etc/logrotate.d/cron
 ```
 
 ## Snapshot Retention
-By default snapshots will be kept for 7 days, however they can be kept for longer / shorter, by using the the -d flag:
+By default snapshots will be kept forever, however they can be kept for shorter, by using the the -d flag:
 
     Usage: ./snapshot.sh [-d <days>]
     
     Options:
     
        -d  Number of days to keep snapshots. Snapshots older than this number deleted.
-           Default if not set: 7 [OPTIONAL]
+           Default if not set: forever [OPTIONAL]
 
 ## Limitations
 * Only works for the primary disk on VM
