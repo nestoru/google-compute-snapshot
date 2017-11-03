@@ -22,7 +22,7 @@ usage() {
   echo -e "\nUsage: $0 [-d <days>]" 1>&2
   echo -e "\nOptions:\n"
   echo -e "    -d    Number of days to keep snapshots.  Snapshots older than this number deleted."
-  echo -e "          Default if not set: 7 [OPTIONAL]"
+  echo -e "          Default if not set: forever [OPTIONAL]"
   echo -e "\n"
   exit 1
 }
@@ -49,8 +49,6 @@ setScriptOptions()
 
     if [[ -n $opt_d ]];then
       OLDER_THAN=$opt_d
-    else
-      OLDER_THAN=7
     fi
 }
 
@@ -315,8 +313,11 @@ setScriptOptions "$@"
 # create snapshot
 createSnapshotWrapper
 
-# delete snapshots older than 'x' days
-deleteSnapshotsWrapper
+if [[ -n $OLDER_THAN ]];then
+    # delete snapshots older than 'x' days
+    deleteSnapshotsWrapper
+fi
+
 
 # log time
 logTime "End of Script"
